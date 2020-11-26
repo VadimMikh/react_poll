@@ -1,7 +1,7 @@
 .navigation {
     &-toolbar {
-        border-top: 1px solid var(--purple);
-        border-bottom: 1px solid var(--purple);
+        border: 1px solid var(--purple);
+        border-radius: 0.25rem;
     }
 
     &-title {
