@@ -1,0 +1,42 @@
+.pollitem {
+    cursor: pointer;
+
+    &:hover,
+    &--selected {
+        ol:not(.poll-voted) & {
+            background-color: lightgray;
+        }
+    }
+
+    .poll-voted & {
+        cursor: auto;
+    }
+
+    &-text {
+        padding-right: 10px;
+    }
+
+    &-percent {
+        .poll-voted & {
+            &::before {
+                content: ' - ';
+                font-weight: 400;
+            }
+        }
+    }
+
+    &-progress {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 7px;
+        background-color: var(--purple);
+        opacity: .25;
+        transition: all 0.5s;
+
+        &--selected {
+            opacity: .7;
+        }
+    }
+}
