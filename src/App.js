@@ -8,8 +8,8 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 
 import { switchToAdmin, switchToUser } from './actions/userActions'
-import Qna from './Pages/Qna'
 import PollList from './Pages/PollList'
+import Qna from './Pages/Qna'
 
 import './App.scss'
 

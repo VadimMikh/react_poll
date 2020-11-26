@@ -118,7 +118,6 @@ export default (state = initialState, action) => {
                     if (poll.pollId === action.payload) {
                         return {
                             ...poll,
-                            test: 'test',
                             active: false
                         }
                     }
