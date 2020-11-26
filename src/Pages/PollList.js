@@ -21,8 +21,7 @@ const PollList = (props) => {
                 pollsToshow.length ?
                     pollsToshow.map(poll => {
                         return <Poll poll={poll} key={poll.pollId} />
-                    })
-                    :
+                    }) :
                     <span>No active polls abailable</span>
             }
         </div>
