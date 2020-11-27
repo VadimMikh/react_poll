@@ -75,8 +75,7 @@ const Poll = (props) => {
 				)}
 			</div>
 			<ol className={`list-group ${poll.voted && 'poll-voted'}`}>
-				{
-					poll.answers.map((answer) => {
+				{poll.answers.map((answer) => {
 						return <PollItem
 							pollId={poll.pollId}
 							voted={poll.voted}
@@ -84,19 +83,10 @@ const Poll = (props) => {
 							answerHandler={answerHandler} 
 							totalVotes={totlaVotes} 
 							key={answer.id} />
-					})
-				}
+				})}
 			</ol>
-			<small>{ 
-				poll.voted && 
-					<>
-						Total votes: {totlaVotes}
-					</>
-				}
-			</small>
-			{
-				!poll.voted && !isAdmin && selected && <button type="button" className="btn btn-success btn-lg btn-block mt-4" onClick={sendAnswer}>Send</button>
-			}
+			<small>{poll.voted && <>Total votes: {totlaVotes}</>}</small>
+			{!poll.voted && !isAdmin && selected && <button type="button" className="btn btn-success btn-lg btn-block mt-4" onClick={sendAnswer}>Send</button>}
 		</div>
 	)
 }

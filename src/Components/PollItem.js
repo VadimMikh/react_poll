@@ -35,12 +35,11 @@ const PollItem = (props) => {
                 {text}
                 <strong className="pollitem-percent">{percentText}</strong>
             </span>
-            {
-                voted && 
-                    <>  
-                        <span className="badge badge-primary badge-pill">{votes}</span>
-                        <div style={styles} className={`pollitem-progress ${selected && 'pollitem-progress--selected'}`}></div>
-                    </>
+            {voted && 
+                <>  
+                    <span className="badge badge-primary badge-pill">{votes}</span>
+                    <div style={styles} className={`pollitem-progress ${selected && 'pollitem-progress--selected'}`}></div>
+                </>
             }
         </li>
     );
