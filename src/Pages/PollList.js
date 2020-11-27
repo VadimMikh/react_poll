@@ -16,14 +16,10 @@ const PollList = (props) => {
     }
 
     return (
-        <div>
-            {   
-                pollsToshow.length ?
-                    pollsToshow.map(poll => {
-                        return <Poll poll={poll} key={poll.pollId} />
-                    }) :
-                    <span>No active polls abailable</span>
-            }
+        <div className="flex-fill">
+            {pollsToshow.length 
+                    ? pollsToshow.map(poll => <Poll poll={poll} key={poll.pollId} />) 
+                    : <span>No active polls abailable</span>}
         </div>
     );
 }

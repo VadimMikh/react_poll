@@ -1,0 +1,31 @@
+.qna {
+    &-question {
+        &.alert-light {
+            border: 1px solid #818182;
+        }
+
+        &-author {
+            font-style: italic;
+            font-size: 1rem;
+            display: block;
+        }
+
+        &-like {
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 2;
+            padding: 5px 15px;
+            color: inherit;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+
+    .alert-dismissible .close {
+        padding: 5px 15px;
+        top: 30px;
+    }
+}

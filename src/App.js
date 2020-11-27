@@ -29,7 +29,7 @@ function App() {
 				<header className="navigation-header p-2 py-sm-0 d-flex flex-column flex-sm-row justify-content-center align-items-center">
 					<h1 className="navigation-title flex-fill">QnA & Poll App</h1>
 					<button type="button" 
-						className="btn btn-dark"
+						className="btn btn-dark mb-2 mb-sm-0"
 						onClick={userHandler}>
 						{
 							`Switch to ${userType === 'admin' ? 'user' : 'admin'}`
@@ -41,7 +41,7 @@ function App() {
 					<NavLink className="flex-fill text-center nav-link" activeClassName="active" to="/qna">QnA</NavLink>
 				</nav>
 			</div>
-			<div className="container py-4">
+			<div className="container py-4 d-flex flex-fill">
 				<Switch>
 					<Route exact path="/">
 						<Redirect to="/poll" />
