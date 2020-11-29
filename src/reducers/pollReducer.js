@@ -3,7 +3,7 @@ const initialState = {
         {
             pollId: 1,
             question: 'How are you?',
-            voted: false,
+            voted: [],
             active: false,
             answers: [
                 {   
@@ -29,7 +29,7 @@ const initialState = {
         {
             pollId: 2,
             question: 'Are you hungry?',
-            voted: false,
+            voted: [],
             active: false,
             answers: [
                 {   
@@ -49,7 +49,7 @@ const initialState = {
         {
             pollId: 3,
             question: 'How is the weather today?',
-            voted: false,
+            voted: [],
             active: false,
             answers: [
                 {   

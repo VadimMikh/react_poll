@@ -26,7 +26,7 @@ const PollItem = (props) => {
     useEffect(() => {
         voted && setPercent(Math.round(votes / totalVotes * 100))
         return () => {}
-    }, [totalVotes, props])
+    }, [totalVotes, voted])
 
     return (
         <li className={`pollitem list-group-item d-flex justify-content-between align-items-center ${selected && 'pollitem--selected'}`} 
