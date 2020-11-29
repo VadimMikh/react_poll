@@ -1,8 +1,7 @@
 {
-    "extends": [
-        "plugin:react-hooks/recommended"
+    "plugins": [
+        "react-hooks"
     ],
-    "plugins": ["react-hooks"],
     "parserOptions": {
         "ecmaVersion": 9,
         "sourceType": "module",
