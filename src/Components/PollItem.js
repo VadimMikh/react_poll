@@ -42,7 +42,7 @@ const PollItem = (props) => {
                 </>
             }
         </li>
-    );
+    )
 }
 
 export default PollItem

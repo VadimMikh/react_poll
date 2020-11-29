@@ -5,10 +5,10 @@ import Sprite from './../../node_modules/bootstrap-icons/bootstrap-icons.svg'
 import { likeQuestion, dislikeQuestion, deleteQuestion } from '../actions/qnaActions'
 
 const Question = (props) => {
-    const { question } = props
     const userType = useSelector(state => state.user.type)
-    const [liked, setliked] = useState(false);
-    const dispatch = useDispatch();
+    const [liked, setliked] = useState(false)
+    const dispatch = useDispatch()
+    const { question } = props
 
     const likesHandler = () => {
         const hadnler = liked ? dislikeQuestion : likeQuestion
@@ -38,7 +38,7 @@ const Question = (props) => {
             </a>
             {userType === 'admin' && <button type="button" onClick={deleteQuestionHandler} className="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>}
         </div>
-    );
+    )
 }
 
 export default Question
