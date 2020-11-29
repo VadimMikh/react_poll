@@ -11,6 +11,7 @@ const Qna = () => {
     const questions = useSelector(state => state.qna.questions)
     const dispatch = useDispatch()
     const inputEl = useRef(null)
+    const endOfBlock = useRef(null)
 
     const addAQuestionHandler = () => {
         if (inputEl.current.value) {
@@ -21,8 +22,13 @@ const Qna = () => {
                 author: 'Anonymous'
             }
             dispatch(addQuestion(newQuestion))
+            scrollToBottom()
             inputEl.current.value = ''
         }
+    }
+
+    const scrollToBottom = () => {
+        endOfBlock.current.scrollIntoView({ behavior: 'smooth' })
     }
 
     const keyHandler = (e) => {
@@ -32,18 +38,18 @@ const Qna = () => {
     }
 
     return (
-        <div className="d-flex flex-column flex-fill">
+        <div className="d-flex flex-column flex-fill pb-5">
             <div className="qna">
                 {questions.length 
-                    ? questions.map(item => 
+                    ? questions.map((item, i) => 
                         <Fade key={item.id} bottom>
                             <Question question={item}/>
                         </Fade>
                     )
-                    : <span>There are no quetions yet</span>
-                }
+                    : <span>There are no quetions yet</span>}
+                    <div className="p-5" ref={endOfBlock}></div>
             </div>
-            <div className="input-group mt-auto">
+            <div className="qna-inputbox container input-group mt-auto">
                 <input type="text" ref={inputEl} onKeyPress={keyHandler} className="form-control" placeholder="Write your question" aria-label="Write your question" aria-describedby="button-addon2" />
                 <div className="input-group-append">
                     <button className="btn btn-outline-secondary" onClick={addAQuestionHandler} type="button" id="button-addon2">Send</button>

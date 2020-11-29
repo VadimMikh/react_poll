@@ -10,8 +10,8 @@ const Poll = (props) => {
 	const [ activePoll, setActivePoll ] = useState(null)
 	const dispatch = useDispatch()
 	const isAdmin = userType === 'admin'
-	const poll = props.poll;
-	let totlaVotes = 0;
+	const poll = props.poll
+	let totlaVotes = 0
 	
 	poll.answers.map(answer => {
 		totlaVotes += answer.votes
