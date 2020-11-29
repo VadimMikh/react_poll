@@ -24,7 +24,7 @@ function App() {
 	}
 
 	return (
-		<Router>
+		<Router basename='/react_poll/'>
 			<div className="container">
 				<header className="navigation-header p-2 py-sm-0 d-flex flex-column flex-sm-row justify-content-center align-items-center">
 					<h1 className="navigation-title flex-fill">QnA & Poll App</h1>
@@ -46,11 +46,14 @@ function App() {
 					<Route exact path="/">
 						<Redirect to="/poll" />
 					</Route>
-					<Route exact path="/poll">
+					<Route path="/poll">
 						<PollList userType={userType} />
 					</Route>
-					<Route exact path="/qna">
+					<Route path="/qna">
 						<Qna />
+					</Route>
+					<Route path="*">
+						<Redirect to="/poll" />
 					</Route>
 				</Switch>
 			</div>
