@@ -26,10 +26,10 @@ const PollItem = (props) => {
     useEffect(() => {
         voted && setPercent(Math.round(votes / totalVotes * 100))
         return () => {}
-    }, [totalVotes, props])
+    }, [totalVotes, votes, voted])
 
     return (
-        <li className={`pollitem list-group-item d-flex justify-content-between align-items-center ${selected && 'pollitem--selected'}`} 
+        <li className={`pollitem list-group-item d-flex justify-content-between align-items-center ${selected ? 'pollitem--selected' : ''}`} 
             onClick={answerTrigger}>
             <span className="pollitem-text">
                 {text}
@@ -38,11 +38,11 @@ const PollItem = (props) => {
             {voted && 
                 <>  
                     <span className="badge badge-primary badge-pill">{votes}</span>
-                    <div style={styles} className={`pollitem-progress ${selected && 'pollitem-progress--selected'}`}></div>
+                    <div style={styles} className={`pollitem-progress ${selected ? 'pollitem-progress--selected' : ''}`}></div>
                 </>
             }
         </li>
-    );
+    )
 }
 
 export default PollItem

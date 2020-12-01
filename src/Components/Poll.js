@@ -10,8 +10,9 @@ const Poll = (props) => {
 	const [ activePoll, setActivePoll ] = useState(null)
 	const dispatch = useDispatch()
 	const isAdmin = userType === 'admin'
-	const poll = props.poll;
-	let totlaVotes = 0;
+	const poll = props.poll
+	const pollVoted = !!(poll.voted.includes(userType) || (poll.voted.length && userType === 'admin'))
+	let totlaVotes = 0
 	
 	poll.answers.map(answer => {
 		totlaVotes += answer.votes
@@ -20,7 +21,7 @@ const Poll = (props) => {
 	const answerHandler = (newAnswer, id) => {
 	   	const updatedPoll = {
 			...poll,
-			voted: true,
+			voted: poll.voted.concat([userType]),
 			pollId: id
 		}
 		
@@ -74,19 +75,19 @@ const Poll = (props) => {
 					: <button type="button" className="btn btn-success btn-sm ml-4" onClick={activatePollHandler}>Activate</button>
 				)}
 			</div>
-			<ol className={`list-group ${poll.voted && 'poll-voted'}`}>
+			<ol className={`list-group ${pollVoted ? 'poll-voted' : ''}`}>
 				{poll.answers.map((answer) => {
 						return <PollItem
 							pollId={poll.pollId}
-							voted={poll.voted}
+							voted={pollVoted}
 							answer={answer}
 							answerHandler={answerHandler} 
 							totalVotes={totlaVotes} 
 							key={answer.id} />
 				})}
 			</ol>
-			<small>{poll.voted && <>Total votes: {totlaVotes}</>}</small>
-			{!poll.voted && !isAdmin && selected && <button type="button" className="btn btn-success btn-lg btn-block mt-4" onClick={sendAnswer}>Send</button>}
+			<small>{pollVoted && <>Total votes: {totlaVotes}</>}</small>
+			{!pollVoted && !isAdmin && selected && <button type="button" className="btn btn-success btn-lg btn-block mt-4" onClick={sendAnswer}>Send</button>}
 		</div>
 	)
 }

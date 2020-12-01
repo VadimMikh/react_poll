@@ -5,7 +5,7 @@ import Poll from '../Components/Poll'
 const PollList = (props) => {
     const polls = useSelector(state => state.polls.allPolls)
     let isAdmin = props.userType === 'admin'
-    let pollsToshow = [];
+    let pollsToshow = []
 
     if (isAdmin) {
         pollsToshow = polls
@@ -21,7 +21,7 @@ const PollList = (props) => {
                     ? pollsToshow.map(poll => <Poll poll={poll} key={poll.pollId} />) 
                     : <span>No active polls abailable</span>}
         </div>
-    );
+    )
 }
 
-export default PollList;
+export default PollList

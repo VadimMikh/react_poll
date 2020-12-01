@@ -1,18 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import { SnackbarProvider } from 'notistack'
 
-import * as serviceWorker from './serviceWorker';
-import configureStore from './store';
-import App from './App';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration'
+import configureStore from './store'
+import App from './App'
 
-import './index.scss';
+import './index.scss'
 
 ReactDOM.render(
-  <Provider store={configureStore()}>
-    <App />
-  </Provider>,
+  <SnackbarProvider
+    anchorOrigin={{
+      vertical: 'top',
+      horizontal: 'right',
+    }}>
+    <Provider store={configureStore()}>
+      <App />
+    </Provider>
+  </SnackbarProvider>,
   document.getElementById('root')
-);
+)
 
-serviceWorker.register();
+serviceWorkerRegistration.register()
