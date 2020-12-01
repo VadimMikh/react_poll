@@ -1,3 +1,9 @@
+import { 
+    UPDATE_POLL,
+    ACTIVATE_POLL,
+    DEACTIVATE_POLL
+} from './../actions/actions'
+
 const initialState = {
     allPolls: [
         {
@@ -83,7 +89,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
-    case 'UPDATE_POLL':
+    case UPDATE_POLL:
         return {
             ...state,
             allPolls: [
@@ -98,7 +104,7 @@ export default (state = initialState, action) => {
                 }),
             ]
         }
-    case 'ACTIVATE_POLL':
+    case ACTIVATE_POLL:
         return {
             ...state,
             allPolls: [
@@ -110,7 +116,7 @@ export default (state = initialState, action) => {
                 }),
             ]
         }
-    case 'DEACTIVATE_POLL':
+    case DEACTIVATE_POLL:
         return {
             ...state,
             allPolls: [

@@ -1,20 +1,41 @@
+import { 
+    ACTIVATE_QUESTIONS,
+    DEACTIVATE_QUESTIONS,
+    ADD_QUESTION,
+    LIKE_QUESTION,
+    DISLIKE_QUESTION,
+    DELETE_QUESTION,
+    APPROVE_QUESTION
+} from './../actions/actions'
+
 const initialState = {
-    questions: []
+    questions: [],
+    active: false
 }
 
 export default (state = initialState, action) => {
     switch (action.type) {
-    case 'ADD_QUESTION':
+    case ACTIVATE_QUESTIONS:
+        return {
+            ...state,
+            active: true
+        }
+    case DEACTIVATE_QUESTIONS:
+        return {
+            ...state,
+            active: false
+        }
+    case ADD_QUESTION:
         return {
             ...state,
             questions: state.questions.concat(action.payload)
         }
-    case 'DELETE_QUESTION':
+    case DELETE_QUESTION:
         return {
             ...state,
             questions: state.questions.filter(item => item.id !== action.payload)
         }
-    case 'LIKE_QUESTION':
+    case LIKE_QUESTION:
         return {
             ...state,
             questions: [
@@ -29,7 +50,7 @@ export default (state = initialState, action) => {
                 })
             ]
         }
-    case 'DISLIKE_QUESTION':
+    case DISLIKE_QUESTION:
         return {
             ...state,
             questions: [
@@ -44,7 +65,7 @@ export default (state = initialState, action) => {
                 })
             ]
         }
-    case 'APPROVE_QUESTION':
+    case APPROVE_QUESTION:
         return {
             ...state,
             questions: [

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { updatePoll, activatePoll, deactivatePoll } from '../actions/pollActions'
@@ -22,18 +22,24 @@ const Poll = (props) => {
 	   	const updatedPoll = {
 			...poll,
 			voted: poll.voted.concat([userType]),
-			pollId: id
+			answers: poll.answers.map(el => {
+				if (el.text === newAnswer.text) {
+					return {
+						...el,
+						votes: newAnswer.votes,
+						selected: true
+					}
+				} else if (el.selected) {
+					return {
+						...el,
+						selected: false,
+						votes: el.votes - 1
+					}
+				}
+				return el
+			})
 		}
-		
-		updatedPoll.answers.map(el => {
-			if (el.text === newAnswer.text) {
-				el.votes = newAnswer.votes
-				el.selected = true
-			} else if (el.selected) {
-				el.selected = false
-				el.votes = el.votes - 1
-			}
-		})
+
 		setActivePoll(updatedPoll)
 		selectHandler(newAnswer, id)
 	}
@@ -41,16 +47,22 @@ const Poll = (props) => {
 	const selectHandler = (newAnswer, id) => {
 		const updatedPollShort = {
 			...poll,
-			pollId: id
+			answers: poll.answers.map(el => {
+				if (el.text === newAnswer.text) {
+					return {
+						...el,
+						selected: true
+					}
+				} else if (el.selected) {
+					return {
+						...el,
+						selected: false
+					}
+				}
+				return el
+			})
 		}
-	 
-		updatedPollShort.answers.map(el => {
-			if (el.text === newAnswer.text) {
-				el.selected = true
-			} else if (el.selected) {
-				el.selected = false
-			}
-		})
+
 		setSelected(true)
 	 	dispatch(updatePoll(updatedPollShort))
 	}
