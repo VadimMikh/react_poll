@@ -27,9 +27,9 @@ function App() {
 		<Router basename='/react_poll/'>
 			<div className="container">
 				<header className="navigation-header p-2 py-sm-0 d-flex flex-column flex-sm-row justify-content-center align-items-center">
-					<h1 className="navigation-title flex-fill">QnA & Poll App</h1>
+					<h1 className="navigation-title flex-fill">Poll & QnA PWA</h1>
 					<button type="button" 
-						className="btn btn-dark mb-2 mb-sm-0"
+						className="btn btn-info mb-2 mb-sm-0"
 						onClick={userHandler}>
 						{
 							`Switch to ${userType === 'admin' ? 'user' : 'admin'}`

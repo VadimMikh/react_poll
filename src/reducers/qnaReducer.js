@@ -44,6 +44,21 @@ export default (state = initialState, action) => {
                 })
             ]
         }
+    case 'APPROVE_QUESTION':
+        return {
+            ...state,
+            questions: [
+                ...state.questions.map(item => {
+                    if (item.id === action.payload) {
+                        return {
+                            ...item,
+                            approved: true
+                        }
+                    }
+                    return item
+                })
+            ]
+        }
     default:
         return state
     }

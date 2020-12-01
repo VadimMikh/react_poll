@@ -25,3 +25,10 @@ export function deleteQuestion(id) {
         payload: id
     }
 }
+
+export function approveQuestion(id) {
+    return {
+        type: 'APPROVE_QUESTION',
+        payload: id
+    }
+}

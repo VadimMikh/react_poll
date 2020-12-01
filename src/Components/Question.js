@@ -2,11 +2,11 @@ import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import Sprite from './../../node_modules/bootstrap-icons/bootstrap-icons.svg'
-import { likeQuestion, dislikeQuestion, deleteQuestion } from '../actions/qnaActions'
+import { likeQuestion, dislikeQuestion, deleteQuestion, approveQuestion } from '../actions/qnaActions'
 
 const Question = (props) => {
     const userType = useSelector(state => state.user.type)
-    const [liked, setliked] = useState(false)
+    const [ liked, setliked ] = useState(false)
     const dispatch = useDispatch()
     const { question } = props
 
@@ -21,6 +21,10 @@ const Question = (props) => {
         dispatch(deleteQuestion(question.id))
     }
 
+    const approveHandler = () => {
+        dispatch(approveQuestion(question.id))
+    }
+
     return (
         <div className="qna-question alert alert-light alert-dismissible">
             <div className="d-flex align-items-center mb-2">
@@ -28,6 +32,8 @@ const Question = (props) => {
                     <use href={ Sprite + "#person-circle" }/>
                 </svg>
                 <span className="qna-question-author ml-2">{question.author}</span>
+                {(userType === 'admin' && !question.approved) 
+                    && <button type="button" onClick={approveHandler} className="btn btn-success btn-sm ml-3">Approve</button>}
             </div>
             <p className="qna-question-text mb-0">{question.text}</p>
             <a type="button" className="qna-question-like d-flex align-items-center" onClick={likesHandler}>
