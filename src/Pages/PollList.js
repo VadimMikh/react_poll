@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 
-import Poll from '../Components/Poll'
+import Poll from '../components/Poll'
 
 const PollList = (props) => {
     const polls = useSelector(state => state.polls.allPolls)

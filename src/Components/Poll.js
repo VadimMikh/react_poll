@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { updatePoll, activatePoll, deactivatePoll } from '../actions/pollActions'
@@ -18,7 +18,7 @@ const Poll = (props) => {
 		totlaVotes += answer.votes
 	})
 
-	const answerHandler = (newAnswer, id) => {
+	const answerHandler = (newAnswer) => {
 	   	const updatedPoll = {
 			...poll,
 			voted: poll.voted.concat([userType]),
@@ -41,10 +41,10 @@ const Poll = (props) => {
 		}
 
 		setActivePoll(updatedPoll)
-		selectHandler(newAnswer, id)
+		selectHandler(newAnswer)
 	}
 
-	const selectHandler = (newAnswer, id) => {
+	const selectHandler = (newAnswer) => {
 		const updatedPollShort = {
 			...poll,
 			answers: poll.answers.map(el => {
@@ -74,6 +74,7 @@ const Poll = (props) => {
 	const activatePollHandler = () => {
 		dispatch(activatePoll(poll.pollId))
 	}
+
 	const deactivatePollHandler = () => {
 		dispatch(deactivatePoll(poll.pollId))
 	}
@@ -90,7 +91,6 @@ const Poll = (props) => {
 			<ol className={`list-group ${pollVoted ? 'poll-voted' : ''}`}>
 				{poll.answers.map((answer) => {
 						return <PollItem
-							pollId={poll.pollId}
 							voted={pollVoted}
 							answer={answer}
 							answerHandler={answerHandler} 
