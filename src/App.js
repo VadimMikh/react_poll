@@ -8,8 +8,8 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 
 import { switchToAdmin, switchToUser } from './actions/userActions'
-import PollList from './Pages/PollList'
-import Qna from './Pages/Qna'
+import PollList from './pages/PollList'
+import Qna from './pages/Qna'
 
 import './App.scss'
 
@@ -19,7 +19,6 @@ function App() {
 
 	const userHandler = () => {
 		const handler = userType === 'user' ? switchToAdmin : switchToUser
-
 		dispatch(handler())
 	}
 
@@ -31,9 +30,7 @@ function App() {
 					<button type="button" 
 						className="btn btn-info mb-2 mb-sm-0"
 						onClick={userHandler}>
-						{
-							`Switch to ${userType === 'admin' ? 'user' : 'admin'}`
-						}
+						{`Switch to ${userType === 'admin' ? 'user' : 'admin'}`}
 					</button>
 				</header>
 				<nav className="nav nav-pills flex-row navigation-toolbar">

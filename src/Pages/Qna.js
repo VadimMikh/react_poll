@@ -1,12 +1,12 @@
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useSnackbar } from 'notistack'
 import Fade from 'react-reveal/Fade'
 
-import Question from '../Components/Question'
+import Question from '../components/Question'
 import { addQuestion, activateQuestions, deactivateQuestions } from '../actions/qnaActions'
 
-import './../Components/Question.scss'
+import '../components/Question.scss'
 
 const Qna = () => {
     const questions = useSelector(state => state.qna.questions)

@@ -6,7 +6,7 @@ import './PollItem.scss'
 const PollItem = (props) => {
     const userType = useSelector(state => state.user.type)
     const [ percent, setPercent ] = useState(0)
-    const { answer, answerHandler, totalVotes, voted, pollId } = props
+    const { answer, answerHandler, totalVotes, voted } = props
     const { text, votes, selected } = answer
     const percentText = voted ? `${percent}%` : ''
 
@@ -19,13 +19,12 @@ const PollItem = (props) => {
             answerHandler({
                 text,
                 votes: votes + 1
-            }, pollId)
+            })
         }
     }
 
     useEffect(() => {
         voted && setPercent(Math.round(votes / totalVotes * 100))
-        return () => {}
     }, [totalVotes, votes, voted])
 
     return (
