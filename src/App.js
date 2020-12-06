@@ -5,20 +5,19 @@ import {
 	Redirect,
 	Route
 } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-
+import { useDispatch } from 'react-redux'
+import { useUser } from './customHooks'
 import { switchToAdmin, switchToUser } from './actions/userActions'
 import PollList from './pages/PollList'
 import Qna from './pages/Qna'
-
 import './App.scss'
 
 function App() {
-	const userType = useSelector(state => state.user.type)
+	const [ isAdmin ] = useUser()
 	const dispatch = useDispatch()
 
 	const userHandler = () => {
-		const handler = userType === 'user' ? switchToAdmin : switchToUser
+		const handler = isAdmin ? switchToUser : switchToAdmin
 		dispatch(handler())
 	}
 
@@ -30,7 +29,7 @@ function App() {
 					<button type="button" 
 						className="btn btn-info mb-2 mb-sm-0"
 						onClick={userHandler}>
-						{`Switch to ${userType === 'admin' ? 'user' : 'admin'}`}
+						{`Switch to ${isAdmin ? 'user' : 'admin'} view`}
 					</button>
 				</header>
 				<nav className="nav nav-pills flex-row navigation-toolbar">
@@ -44,7 +43,7 @@ function App() {
 						<Redirect to="/poll" />
 					</Route>
 					<Route path="/poll">
-						<PollList userType={userType} />
+						<PollList />
 					</Route>
 					<Route path="/qna">
 						<Qna />

@@ -10,7 +10,7 @@ const initialState = {
             pollId: 1,
             question: 'How are you?',
             voted: [],
-            active: false,
+            active: true,
             answers: [
                 {   
                     id: 123,

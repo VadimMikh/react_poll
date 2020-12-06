@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
-
+import { useUser } from '../customHooks'
 import './PollItem.scss'
 
 const PollItem = (props) => {
-    const userType = useSelector(state => state.user.type)
+    const [ isAdmin ] = useUser()
     const [ percent, setPercent ] = useState(0)
     const { answer, answerHandler, totalVotes, voted } = props
     const { text, votes, selected } = answer
@@ -15,7 +14,7 @@ const PollItem = (props) => {
     }
 
     const answerTrigger = () => {
-        if (!voted && userType !== 'admin') {
+        if (!voted && !isAdmin) {
             answerHandler({
                 text,
                 votes: votes + 1

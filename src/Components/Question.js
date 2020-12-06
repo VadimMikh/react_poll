@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-
-import Sprite from './../../node_modules/bootstrap-icons/bootstrap-icons.svg'
+import { useDispatch } from 'react-redux'
 import { likeQuestion, dislikeQuestion, deleteQuestion, approveQuestion } from '../actions/qnaActions'
+import { useUser } from '../customHooks'
+import Sprite from './../../node_modules/bootstrap-icons/bootstrap-icons.svg'
 
 const Question = (props) => {
-    const userType = useSelector(state => state.user.type)
+    const [ isAdmin ] = useUser()
     const [ liked, setliked ] = useState(false)
     const dispatch = useDispatch()
     const { question } = props
@@ -32,7 +32,7 @@ const Question = (props) => {
                     <use href={ Sprite + "#person-circle" }/>
                 </svg>
                 <span className="qna-question-author ml-2">{question.author}</span>
-                {(userType === 'admin' && !question.approved) 
+                {(isAdmin && !question.approved) 
                     && <button type="button" onClick={approveHandler} className="btn btn-success btn-sm ml-3">Approve</button>}
             </div>
             <p className="qna-question-text mb-0">{question.text}</p>
@@ -42,7 +42,7 @@ const Question = (props) => {
                     <use href={ Sprite + "#hand-thumbs-up" }/>
                 </svg>
             </a>
-            {userType === 'admin' && <button type="button" onClick={deleteQuestionHandler} className="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>}
+            {isAdmin && <button type="button" onClick={deleteQuestionHandler} className="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>}
         </div>
     )
 }

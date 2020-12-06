@@ -1,27 +1,29 @@
-import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-
+import { useState, useMemo } from 'react'
+import { useDispatch } from 'react-redux'
 import { updatePoll, activatePoll, deactivatePoll } from '../actions/pollActions'
 import PollItem from './PollItem'
+import { useUser } from '../customHooks'
 
 const Poll = (props) => {
-	const userType = useSelector(state => state.user.type)
+	const [ isAdmin, userName ] = useUser()
 	const [ selected, setSelected ] = useState(false)
 	const [ activePoll, setActivePoll ] = useState(null)
 	const dispatch = useDispatch()
-	const isAdmin = userType === 'admin'
 	const poll = props.poll
-	const pollVoted = !!(poll.voted.includes(userType) || (poll.voted.length && userType === 'admin'))
-	let totlaVotes = 0
-	
-	poll.answers.map(answer => {
-		totlaVotes += answer.votes
-	})
+	const pollVoted = !!(poll.voted.includes(userName) || (poll.voted.length && isAdmin))
+
+	const totalVotes = useMemo(() => {
+		let totalVotes = 0
+		poll.answers.map(answer => {
+			totalVotes += answer.votes
+		})
+		return totalVotes
+	}, [poll.answers])
 
 	const answerHandler = (newAnswer) => {
 	   	const updatedPoll = {
 			...poll,
-			voted: poll.voted.concat([userType]),
+			voted: poll.voted.concat([userName]),
 			answers: poll.answers.map(el => {
 				if (el.text === newAnswer.text) {
 					return {
@@ -90,15 +92,16 @@ const Poll = (props) => {
 			</div>
 			<ol className={`list-group ${pollVoted ? 'poll-voted' : ''}`}>
 				{poll.answers.map((answer) => {
-						return <PollItem
-							voted={pollVoted}
-							answer={answer}
-							answerHandler={answerHandler} 
-							totalVotes={totlaVotes} 
-							key={answer.id} />
+					return <PollItem
+						voted={pollVoted}
+						answer={answer}
+						answerHandler={answerHandler} 
+						totalVotes={totalVotes || 0} 
+						key={answer.id} 
+					/>
 				})}
 			</ol>
-			<small>{pollVoted && <>Total votes: {totlaVotes}</>}</small>
+			<small>{pollVoted && <>Total votes: {totalVotes}</>}</small>
 			{!pollVoted && !isAdmin && selected && <button type="button" className="btn btn-success btn-lg btn-block mt-4" onClick={sendAnswer}>Send</button>}
 		</div>
 	)

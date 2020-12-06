@@ -1,10 +1,11 @@
 import { useSelector } from 'react-redux'
-
+import { useUser } from '../customHooks'
 import Poll from '../components/Poll'
 
-const PollList = (props) => {
+const PollList = () => {
     const polls = useSelector(state => state.polls.allPolls)
-    const pollsToshow = props.userType === 'admin' ? polls : polls.filter(poll => poll.active === true)
+    const [ isAdmin ] = useUser()
+    const pollsToshow = isAdmin ? polls : polls.filter(poll => poll.active === true)
 
     return (
         <div className="flex-fill">
