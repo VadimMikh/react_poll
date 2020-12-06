@@ -2,22 +2,21 @@ import { useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useSnackbar } from 'notistack'
 import Fade from 'react-reveal/Fade'
-
+import { useUser } from '../customHooks'
 import Question from '../components/Question'
 import { addQuestion, activateQuestions, deactivateQuestions } from '../actions/qnaActions'
-
 import '../components/Question.scss'
 
 const Qna = () => {
     const questions = useSelector(state => state.qna.questions)
     const qnaActive = useSelector(state => state.qna.active)
-    const userType = useSelector(state => state.user.type)
     const userName = useSelector(state => state.user.name)
+    const [ isAdmin ] = useUser()
     const { enqueueSnackbar, closeSnackbar } = useSnackbar()
     const dispatch = useDispatch()
     const inputEl = useRef(null)
     const endOfBlock = useRef(null)
-    const questionsToShow = userType === 'admin' ? questions : questions.filter(questions => questions.approved === true)
+    const questionsToShow = isAdmin ? questions : questions.filter(questions => questions.approved === true)
 
     questionsToShow.sort((a, b) => b.likes - a.likes)
 
@@ -26,7 +25,7 @@ const Qna = () => {
             const newQuestion = {
                 id: Date.now(),
                 likes: 0,
-                approved: false,
+                approved: isAdmin,
                 text: inputEl.current.value,
                 author: userName
             }
@@ -35,7 +34,7 @@ const Qna = () => {
             scrollToBottom()
             inputEl.current.value = ''
 
-            if (userType !== 'admin') {
+            if (!isAdmin) {
                 const key = enqueueSnackbar('Your question was added and will be shown after moderation', {
                     onClick: () => {
                         closeSnackbar(key)
@@ -57,7 +56,7 @@ const Qna = () => {
 
     return (
         <div className="d-flex flex-column flex-fill pb-5">
-            {userType === 'admin' && (qnaActive
+            {isAdmin && (qnaActive
                 ? <button type="button" className="btn btn-danger btn-lg btn-block mb-4" onClick={() => dispatch(deactivateQuestions())}>Deactivate QnA</button>
                 : <button type="button" className="btn btn-success btn-lg btn-block mb-4" onClick={() => dispatch(activateQuestions())}>Activate QnA</button>)}
             <div className="qna">
