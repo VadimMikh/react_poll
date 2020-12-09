@@ -6,7 +6,7 @@ import {
     DISLIKE_QUESTION,
     DELETE_QUESTION,
     APPROVE_QUESTION
-} from './actions'
+} from './types'
 
 export function activateQuestions() {
     return {

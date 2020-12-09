@@ -6,7 +6,7 @@ import {
     DISLIKE_QUESTION,
     DELETE_QUESTION,
     APPROVE_QUESTION
-} from './../actions/actions'
+} from '../actions/types'
 
 const initialState = {
     questions: [],

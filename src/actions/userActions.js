@@ -1,7 +1,7 @@
 import {
     SET_ADMIN_TYPE,
     SET_USER_TYPE
-} from './actions'
+} from './types'
 
 export function switchToAdmin() {
     return {
