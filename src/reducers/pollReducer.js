@@ -2,7 +2,7 @@ import {
     UPDATE_POLL,
     ACTIVATE_POLL,
     DEACTIVATE_POLL
-} from './../actions/actions'
+} from '../actions/types'
 
 const initialState = {
     allPolls: [
