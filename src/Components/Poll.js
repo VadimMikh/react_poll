@@ -9,7 +9,7 @@ const Poll = (props) => {
 	const [ selected, setSelected ] = useState(false)
 	const [ activePoll, setActivePoll ] = useState(null)
 	const dispatch = useDispatch()
-	const poll = props.poll
+	const { poll } = props
 	const pollVoted = !!(poll.voted.includes(userName) || (poll.voted.length && isAdmin))
 
 	const totalVotes = useMemo(() => {
