@@ -16,9 +16,7 @@ const Qna = () => {
     const dispatch = useDispatch()
     const inputEl = useRef(null)
     const endOfBlock = useRef(null)
-    const questionsToShow = isAdmin ? questions : questions.filter(questions => questions.approved === true)
-
-    questionsToShow.sort((a, b) => b.likes - a.likes)
+    const questionsToShow = isAdmin ? questions : questions.filter(questions => questions.approved === true).sort((a, b) => b.likes - a.likes)
 
     const addAQuestionHandler = () => {
         if (inputEl.current.value) {
