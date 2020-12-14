@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useMemo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useSnackbar } from 'notistack'
 import Fade from 'react-reveal/Fade'
@@ -16,7 +16,9 @@ const Qna = () => {
     const dispatch = useDispatch()
     const inputEl = useRef(null)
     const endOfBlock = useRef(null)
-    const questionsToShow = isAdmin ? questions : questions.filter(questions => questions.approved === true).sort((a, b) => b.likes - a.likes)
+    const questionsToShow = isAdmin ? questions : questions.filter(questions => questions.approved === true)
+
+    questionsToShow.sort((a, b) => b.likes - a.likes)
 
     const addAQuestionHandler = () => {
         if (inputEl.current.value) {
