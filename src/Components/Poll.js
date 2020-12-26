@@ -91,7 +91,7 @@ const Poll = (props) => {
 				)}
 			</div>
 			<ol className={`list-group ${pollVoted ? 'poll-voted' : ''}`}>
-				{poll.answers.map((answer) => {
+				{poll.answers.map(answer => {
 					return <PollItem
 						voted={pollVoted}
 						answer={answer}

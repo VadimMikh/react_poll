@@ -22,13 +22,21 @@ const PollItem = (props) => {
         }
     }
 
+    const a11yPress = e => {
+        if (e.charCode === 13) {
+            answerTrigger()
+        }
+    }
+
     useEffect(() => {
         voted && setPercent(Math.round(votes / totalVotes * 100))
     }, [totalVotes, votes, voted])
 
     return (
         <li className={`pollitem list-group-item d-flex justify-content-between align-items-center ${selected ? 'pollitem--selected' : ''}`} 
-            onClick={answerTrigger}>
+            onClick={answerTrigger}
+            onKeyPress={a11yPress}
+            tabIndex="0">
             <span className="pollitem-text">
                 {text}
                 <strong className="pollitem-percent">{percentText}</strong>
