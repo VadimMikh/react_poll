@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useUser } from '../customHooks'
 import './PollItem.scss'
 
-const PollItem = (props) => {
+const PollItem = props => {
     const [ isAdmin ] = useUser()
     const [ percent, setPercent ] = useState(0)
     const { answer, answerHandler, totalVotes, voted, clicked } = props

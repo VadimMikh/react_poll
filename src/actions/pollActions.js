@@ -4,23 +4,17 @@ import {
     DEACTIVATE_POLL
 } from './types'
 
-export function updatePoll(poll) {
-    return {
-        type: UPDATE_POLL,
-        payload: poll
-    }
-}
+export const updatePoll = poll => ({
+    type: UPDATE_POLL,
+    payload: poll
+})
 
-export function activatePoll(id) {
-    return {
-        type: ACTIVATE_POLL,
-        payload: id
-    }
-}
+export const activatePoll = id => ({
+    type: ACTIVATE_POLL,
+    payload: id
+})
 
-export function deactivatePoll(id) {
-    return {
-        type: DEACTIVATE_POLL,
-        payload: id
-    }
-}
+export const deactivatePoll = id => ({
+    type: DEACTIVATE_POLL,
+    payload: id
+})

@@ -36,7 +36,7 @@ const Qna = () => {
 
             if (!isAdmin) {
                 const key = enqueueSnackbar('Your question was added and will be shown after moderation', {
-                    onClick: () => {
+                    onClick() {
                         closeSnackbar(key)
                     }
                 })
