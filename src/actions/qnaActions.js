@@ -8,49 +8,35 @@ import {
     APPROVE_QUESTION
 } from './types'
 
-export function activateQuestions() {
-    return {
-        type: ACTIVATE_QUESTIONS
-    }
-}
+export const activateQuestions = () => ({
+    type: ACTIVATE_QUESTIONS
+})
 
-export function deactivateQuestions() {
-    return {
-        type: DEACTIVATE_QUESTIONS
-    }
-}
+export const deactivateQuestions = () => ({
+    type: DEACTIVATE_QUESTIONS
+})
 
-export function addQuestion(item) {
-    return {
-        type: ADD_QUESTION,
-        payload: item
-    }
-}
+export const addQuestion = item => ({
+    type: ADD_QUESTION,
+    payload: item
+})
 
-export function likeQuestion(id) {
-    return {
-        type: LIKE_QUESTION,
-        payload: id
-    }
-}
+export const likeQuestion = id => ({
+    type: LIKE_QUESTION,
+    payload: id
+})
 
-export function dislikeQuestion(id) {
-    return {
-        type: DISLIKE_QUESTION,
-        payload: id
-    }
-}
+export const dislikeQuestion = id => ({
+    type: DISLIKE_QUESTION,
+    payload: id
+})
 
-export function deleteQuestion(id) {
-    return {
-        type: DELETE_QUESTION,
-        payload: id
-    }
-}
+export const deleteQuestion = id => ({
+    type: DELETE_QUESTION,
+    payload: id
+})
 
-export function approveQuestion(id) {
-    return {
-        type: APPROVE_QUESTION,
-        payload: id
-    }
-}
+export const approveQuestion = id => ({
+    type: APPROVE_QUESTION,
+    payload: id
+})

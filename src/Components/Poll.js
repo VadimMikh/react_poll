@@ -4,7 +4,7 @@ import { useUser } from '../customHooks'
 import { updatePoll, activatePoll, deactivatePoll } from '../actions/pollActions'
 import PollItem from './PollItem'
 
-const Poll = (props) => {
+const Poll = props => {
 	const [ isAdmin, userName ] = useUser()
 	const [ selected, setSelected ] = useState(false)
 	const [ activePoll, setActivePoll ] = useState(null)
@@ -21,7 +21,7 @@ const Poll = (props) => {
 		return totalVotes
 	}, [poll.answers])
 
-	const answerHandler = (newAnswer) => {
+	const answerHandler = newAnswer => {
 	   	const updatedPoll = {
 			...poll,
 			voted: poll.voted.concat([userName]),
