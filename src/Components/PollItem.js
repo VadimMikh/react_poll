@@ -5,8 +5,8 @@ import './PollItem.scss'
 const PollItem = (props) => {
     const [ isAdmin ] = useUser()
     const [ percent, setPercent ] = useState(0)
-    const { answer, answerHandler, totalVotes, voted } = props
-    const { text, votes, selected } = answer
+    const { answer, answerHandler, totalVotes, voted, clicked } = props
+    const { id, text, votes, selected } = answer
     const percentText = voted ? `${percent}%` : ''
 
     let styles = {
@@ -16,7 +16,7 @@ const PollItem = (props) => {
     const answerTrigger = () => {
         if (!voted && !isAdmin) {
             answerHandler({
-                text,
+                id,
                 votes: votes + 1
             })
         }
@@ -33,7 +33,7 @@ const PollItem = (props) => {
     }, [totalVotes, votes, voted])
 
     return (
-        <li className={`pollitem list-group-item d-flex justify-content-between align-items-center ${selected ? 'pollitem--selected' : ''}`} 
+        <li className={`pollitem list-group-item d-flex justify-content-between align-items-center ${selected ? 'pollitem--selected' : ''} ${clicked ? 'pollitem--clicked' : ''}`} 
             onClick={answerTrigger}
             onKeyPress={a11yPress}
             tabIndex="0">

@@ -8,6 +8,7 @@ const Poll = (props) => {
 	const [ isAdmin, userName ] = useUser()
 	const [ selected, setSelected ] = useState(false)
 	const [ activePoll, setActivePoll ] = useState(null)
+	const [ selectedID, setSelectedID ] = useState()
 	const dispatch = useDispatch()
 	const { poll } = props
 	const pollVoted = !!(poll.voted.includes(userName) || (poll.voted.length && isAdmin))
@@ -25,7 +26,7 @@ const Poll = (props) => {
 			...poll,
 			voted: poll.voted.concat([userName]),
 			answers: poll.answers.map(el => {
-				if (el.text === newAnswer.text) {
+				if (el.id === newAnswer.id) {
 					return {
 						...el,
 						votes: newAnswer.votes,
@@ -42,31 +43,9 @@ const Poll = (props) => {
 			})
 		}
 
-		setActivePoll(updatedPoll)
-		selectHandler(newAnswer)
-	}
-
-	const selectHandler = (newAnswer) => {
-		const updatedPollShort = {
-			...poll,
-			answers: poll.answers.map(el => {
-				if (el.text === newAnswer.text) {
-					return {
-						...el,
-						selected: true
-					}
-				} else if (el.selected) {
-					return {
-						...el,
-						selected: false
-					}
-				}
-				return el
-			})
-		}
-
+		setSelectedID(newAnswer.id)
 		setSelected(true)
-	 	dispatch(updatePoll(updatedPollShort))
+		setActivePoll(updatedPoll)
 	}
 	 
 	const sendAnswer = () => {
@@ -95,6 +74,7 @@ const Poll = (props) => {
 					return <PollItem
 						voted={pollVoted}
 						answer={answer}
+						clicked={answer.id === selectedID}
 						answerHandler={answerHandler} 
 						totalVotes={totalVotes || 0} 
 						key={answer.id} 

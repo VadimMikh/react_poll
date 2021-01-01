@@ -2,7 +2,7 @@
     cursor: pointer;
 
     &:hover,
-    &--selected {
+    &--clicked {
         ol:not(.poll-voted) & {
             background-color: lightgray;
         }
