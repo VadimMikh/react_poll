@@ -28,12 +28,12 @@ export default (state = initialState, action) => {
     case ADD_QUESTION:
         return {
             ...state,
-            questions: state.questions.concat(action.payload)
+            questions: [...state.questions.concat(action.payload)]
         }
     case DELETE_QUESTION:
         return {
             ...state,
-            questions: state.questions.filter(item => item.id !== action.payload)
+            questions: [...state.questions.filter(item => item.id !== action.payload)]
         }
     case LIKE_QUESTION:
         return {
