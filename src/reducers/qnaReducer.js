@@ -38,47 +38,17 @@ export default (state = initialState, action) => {
     case LIKE_QUESTION:
         return {
             ...state,
-            questions: [
-                ...state.questions.map(item => {
-                    if (item.id === action.payload) {
-                        return {
-                            ...item,
-                            likes: item.likes + 1
-                        }
-                    }
-                    return item
-                })
-            ]
+            questions: [...state.questions.map(item => item.id === action.payload ? {...item, likes: item.likes + 1} : item)]
         }
     case DISLIKE_QUESTION:
         return {
             ...state,
-            questions: [
-                ...state.questions.map(item => {
-                    if (item.id === action.payload) {
-                        return {
-                            ...item,
-                            likes: item.likes - 1
-                        }
-                    }
-                    return item
-                })
-            ]
+            questions: [...state.questions.map(item => item.id === action.payload ? {...item, likes: item.likes - 1} : item)]
         }
     case APPROVE_QUESTION:
         return {
             ...state,
-            questions: [
-                ...state.questions.map(item => {
-                    if (item.id === action.payload) {
-                        return {
-                            ...item,
-                            approved: true
-                        }
-                    }
-                    return item
-                })
-            ]
+            questions: [...state.questions.map(item => item.id === action.payload ? {...item, approved: true} : item)]
         }
     default:
         return state

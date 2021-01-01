@@ -1,8 +1,8 @@
 import { useState, useMemo } from 'react'
 import { useDispatch } from 'react-redux'
+import { useUser } from '../customHooks'
 import { updatePoll, activatePoll, deactivatePoll } from '../actions/pollActions'
 import PollItem from './PollItem'
-import { useUser } from '../customHooks'
 
 const Poll = (props) => {
 	const [ isAdmin, userName ] = useUser()

@@ -48,7 +48,7 @@ const Qna = () => {
         endOfBlock.current.scrollIntoView({ behavior: 'smooth' })
     }
 
-    const keyHandler = (e) => {
+    const keyHandler = e => {
         if (e.charCode === 13) {
             addAQuestionHandler()
         }
@@ -61,7 +61,7 @@ const Qna = () => {
                 : <button type="button" className="btn btn-success btn-lg btn-block mb-4" onClick={() => dispatch(activateQuestions())}>Activate QnA</button>)}
             <div className="qna">
                 {questionsToShow.length 
-                    ? questionsToShow.map((item) => 
+                    ? questionsToShow.map(item => 
                         <Fade key={item.id} bottom>
                             <Question question={item}/>
                         </Fade>
