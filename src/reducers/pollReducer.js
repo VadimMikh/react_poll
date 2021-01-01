@@ -92,44 +92,17 @@ export default (state = initialState, action) => {
     case UPDATE_POLL:
         return {
             ...state,
-            allPolls: [
-                ...state.allPolls.map(poll => {
-                    if (poll.pollId === action.payload.pollId) {
-                        return {
-                            ...poll,
-                            ...action.payload
-                        }
-                    } 
-                    return poll
-                }),
-            ]
+            allPolls: [...state.allPolls.map(poll => poll.pollId === action.payload.pollId ? {...poll, ...action.payload} : poll)]
         }
     case ACTIVATE_POLL:
         return {
             ...state,
-            allPolls: [
-                ...state.allPolls.map(poll => {
-                    return {
-                        ...poll,
-                        active: poll.pollId === action.payload
-                    }
-                }),
-            ]
+            allPolls: [...state.allPolls.map(poll => ({...poll, active: poll.pollId === action.payload}))]
         }
     case DEACTIVATE_POLL:
         return {
             ...state,
-            allPolls: [
-                ...state.allPolls.map(poll => {
-                    if (poll.pollId === action.payload) {
-                        return {
-                            ...poll,
-                            active: false
-                        }
-                    }
-                    return poll
-                }),
-            ]
+            allPolls: [...state.allPolls.map(poll => poll.pollId === action.payload ? {...poll, active: false} : poll)]
         }
     default:
         return state
