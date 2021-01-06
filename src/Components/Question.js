@@ -26,7 +26,7 @@ const Question = props => {
     }
 
     return (
-        <div className="qna-question alert alert-light alert-dismissible">
+        <div className="qna-question alert alert-light alert-dismissible" role="listitem">
             <div className="d-flex align-items-center mb-2">
                 <svg className="bi" width="16" height="16">
                     <use href={ Sprite + "#person-circle" }/>

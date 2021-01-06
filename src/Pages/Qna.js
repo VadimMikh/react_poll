@@ -45,7 +45,7 @@ const Qna = () => {
     }
 
     const scrollToBottom = () => {
-        endOfBlock.current.scrollIntoView({ behavior: 'smooth' })
+        typeof scrollIntoView === 'function' && endOfBlock.current.scrollIntoView({ behavior: 'smooth' })
     }
 
     const keyHandler = e => {
@@ -57,9 +57,9 @@ const Qna = () => {
     return (
         <div className="d-flex flex-column flex-fill pb-5">
             {isAdmin && (qnaActive
-                ? <button type="button" className="btn btn-danger btn-lg btn-block mb-4" onClick={() => dispatch(deactivateQuestions())}>Deactivate QnA</button>
-                : <button type="button" className="btn btn-success btn-lg btn-block mb-4" onClick={() => dispatch(activateQuestions())}>Activate QnA</button>)}
-            <div className="qna">
+                ? <button type="button" className="btn btn-danger btn-lg btn-block mb-4" data-testid="qnaToggler" onClick={() => dispatch(deactivateQuestions())}>Deactivate QnA</button>
+                : <button type="button" className="btn btn-success btn-lg btn-block mb-4" data-testid="qnaToggler" onClick={() => dispatch(activateQuestions())}>Activate QnA</button>)}
+            <div className="qna" role="list">
                 {questionsToShow.length 
                     ? questionsToShow.map(item => 
                         <Fade key={item.id} bottom>
@@ -84,6 +84,7 @@ const Qna = () => {
                         onClick={addAQuestionHandler} 
                         type="button"
                         disabled={!qnaActive}
+                        data-testid="sendButton"
                         id="button-addon2">Send</button>
                 </div>
             </div>

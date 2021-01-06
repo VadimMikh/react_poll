@@ -28,7 +28,8 @@ function App() {
 					<h1 className="navigation-title flex-fill">Poll & QnA PWA</h1>
 					<button type="button" 
 						className="btn btn-info mb-2 mb-sm-0"
-						onClick={userHandler}>
+						onClick={userHandler}
+						data-testid="switchUser">
 						{`Switch to ${isAdmin ? 'user' : 'admin'} view`}
 					</button>
 				</header>

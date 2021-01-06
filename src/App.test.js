@@ -28,4 +28,19 @@ describe('App', () => {
         userEvent.click(qnaLink)
         expect(qnaLink).toHaveClass('active')
     })
+
+    it('fire user change method', () => {
+        render(snackReduxWrapper(<App />))
+        const userSwitchButton = screen.getByTestId('switchUser')
+        userEvent.click(userSwitchButton)
+        expect(screen.getByText('Switch to user view')).toBeInTheDocument(1)
+    })
+
+    it('check enable qna button', () => {
+        render(snackReduxWrapper(<App />))
+        const activateButton = screen.getByTestId('qnaToggler')
+        const input = screen.getByRole('textbox')
+        userEvent.click(activateButton)
+        expect(input).not.toHaveAttribute('readOnly')
+    })
 })
