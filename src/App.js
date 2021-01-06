@@ -28,13 +28,14 @@ function App() {
 					<h1 className="navigation-title flex-fill">Poll & QnA PWA</h1>
 					<button type="button" 
 						className="btn btn-info mb-2 mb-sm-0"
-						onClick={userHandler}>
+						onClick={userHandler}
+						data-testid="switchUser">
 						{`Switch to ${isAdmin ? 'user' : 'admin'} view`}
 					</button>
 				</header>
 				<nav className="nav nav-pills flex-row navigation-toolbar">
-					<NavLink className="flex-fill text-center nav-link" activeClassName="active" to="/poll">Poll</NavLink>
-					<NavLink className="flex-fill text-center nav-link" activeClassName="active" to="/qna">QnA</NavLink>
+					<NavLink className="flex-fill text-center nav-link" activeClassName="active" to="/poll" data-testid='pollLink'>Poll</NavLink>
+					<NavLink className="flex-fill text-center nav-link" activeClassName="active" to="/qna" data-testid='qnaLink'>QnA</NavLink>
 				</nav>
 			</div>
 			<div className="container py-4 d-flex flex-fill">
