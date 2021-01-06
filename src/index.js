@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import { SnackbarProvider } from 'notistack'
 
 import * as serviceWorkerRegistration from './serviceWorkerRegistration'
+import reportWebVitals from './reportWebVitals'
 import configureStore from './store'
 import App from './App'
 
@@ -23,3 +24,4 @@ ReactDOM.render(
 )
 
 serviceWorkerRegistration.register()
+reportWebVitals()

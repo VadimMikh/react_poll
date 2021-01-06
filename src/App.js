@@ -33,8 +33,8 @@ function App() {
 					</button>
 				</header>
 				<nav className="nav nav-pills flex-row navigation-toolbar">
-					<NavLink className="flex-fill text-center nav-link" activeClassName="active" to="/poll">Poll</NavLink>
-					<NavLink className="flex-fill text-center nav-link" activeClassName="active" to="/qna">QnA</NavLink>
+					<NavLink className="flex-fill text-center nav-link" activeClassName="active" to="/poll" data-testid='pollLink'>Poll</NavLink>
+					<NavLink className="flex-fill text-center nav-link" activeClassName="active" to="/qna" data-testid='qnaLink'>QnA</NavLink>
 				</nav>
 			</div>
 			<div className="container py-4 d-flex flex-fill">
