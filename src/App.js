@@ -12,7 +12,7 @@ import PollList from './pages/PollList'
 import Qna from './pages/Qna'
 import './App.scss'
 
-function App() {
+const App = () => {
 	const [ isAdmin ] = useUser()
 	const dispatch = useDispatch()
 
