@@ -102,7 +102,7 @@ export default (state = initialState, action) => {
     case DEACTIVATE_POLL:
         return {
             ...state,
-            allPolls: [...state.allPolls.map(poll => ({...poll, active: poll.pollId !== action.payload}))]
+            allPolls: [...state.allPolls.map(poll => poll.pollId === action.payload ? {...poll, active: false} : poll)]
         }
     default:
         return state
