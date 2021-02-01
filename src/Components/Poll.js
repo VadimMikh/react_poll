@@ -5,13 +5,13 @@ import { updatePoll, activatePoll, deactivatePoll } from '../actions/pollActions
 import PollItem from './PollItem'
 
 const Poll = props => {
-	const [ isAdmin, userName ] = useUser()
+	const [ isAdmin, userIdent ] = useUser()
 	const [ selected, setSelected ] = useState(false)
 	const [ activePoll, setActivePoll ] = useState(null)
 	const [ selectedID, setSelectedID ] = useState()
 	const dispatch = useDispatch()
 	const { poll } = props
-	const pollVoted = !!(poll.voted.includes(userName) || (poll.voted.length && isAdmin))
+	const pollVoted = !!(poll.voted.includes(userIdent) || (poll.voted.length && isAdmin))
 
 	const totalVotes = useMemo(() => {
 		let totalVotes = 0
@@ -24,7 +24,7 @@ const Poll = props => {
 	const answerHandler = newAnswer => {
 	   	const updatedPoll = {
 			...poll,
-			voted: poll.voted.concat([userName]),
+			voted: poll.voted.concat([userIdent]),
 			answers: poll.answers.map(el => {
 				if (el.id === newAnswer.id) {
 					return {
@@ -72,7 +72,7 @@ const Poll = props => {
 			<ol className={`list-group ${pollVoted ? 'poll-voted' : ''}`}>
 				{poll.answers.map(answer => {
 					return <PollItem
-						voted={pollVoted}
+						voted={isAdmin || pollVoted}
 						answer={answer}
 						clicked={answer.id === selectedID}
 						answerHandler={answerHandler} 
