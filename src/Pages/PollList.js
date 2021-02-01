@@ -11,7 +11,7 @@ const PollList = () => {
         <div className="flex-fill">
             {pollsToshow.length 
                 ? pollsToshow.map(poll => <Poll poll={poll} key={poll.pollId} />) 
-                : <span>No active polls abailable</span>}
+                : <span>No active polls available</span>}
         </div>
     )
 }
