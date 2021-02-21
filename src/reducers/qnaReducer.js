@@ -28,27 +28,27 @@ export default (state = initialState, action) => {
     case ADD_QUESTION:
         return {
             ...state,
-            questions: [...state.questions.concat(action.payload)]
+            questions: state.questions.concat(action.payload)
         }
     case DELETE_QUESTION:
         return {
             ...state,
-            questions: [...state.questions.filter(item => item.id !== action.payload)]
+            questions: state.questions.filter(item => item.id !== action.payload)
         }
     case LIKE_QUESTION:
         return {
             ...state,
-            questions: [...state.questions.map(item => item.id === action.payload ? {...item, likes: item.likes + 1} : item)]
+            questions: state.questions.map(item => item.id === action.payload ? {...item, likes: item.likes + 1} : item)
         }
     case DISLIKE_QUESTION:
         return {
             ...state,
-            questions: [...state.questions.map(item => item.id === action.payload ? {...item, likes: item.likes - 1} : item)]
+            questions: state.questions.map(item => item.id === action.payload ? {...item, likes: item.likes - 1} : item)
         }
     case APPROVE_QUESTION:
         return {
             ...state,
-            questions: [...state.questions.map(item => item.id === action.payload ? {...item, approved: true} : item)]
+            questions: state.questions.map(item => item.id === action.payload ? {...item, approved: true} : item)
         }
     default:
         return state
