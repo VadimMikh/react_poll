@@ -4,11 +4,10 @@ import { likeQuestion, dislikeQuestion, deleteQuestion, approveQuestion } from '
 import { useUser } from '../customHooks'
 import Sprite from './../../node_modules/bootstrap-icons/bootstrap-icons.svg'
 
-const Question = props => {
+const Question = ({ question }) => {
     const [ isAdmin ] = useUser()
     const [ liked, setliked ] = useState(false)
     const dispatch = useDispatch()
-    const { question } = props
 
     const likesHandler = () => {
         const hadnler = liked ? dislikeQuestion : likeQuestion

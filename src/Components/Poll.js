@@ -4,13 +4,12 @@ import { useUser } from '../customHooks'
 import { updatePoll, activatePoll, deactivatePoll } from '../actions/pollActions'
 import PollItem from './PollItem'
 
-const Poll = props => {
+const Poll = ({ poll }) => {
 	const [ isAdmin, userIdent ] = useUser()
 	const [ selected, setSelected ] = useState(false)
 	const [ activePoll, setActivePoll ] = useState(null)
 	const [ selectedID, setSelectedID ] = useState()
 	const dispatch = useDispatch()
-	const { poll } = props
 	const pollVoted = !!(poll.voted.includes(userIdent) || (poll.voted.length && isAdmin))
 
 	const totalVotes = useMemo(() => {

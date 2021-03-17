@@ -4,7 +4,6 @@ import { Provider } from 'react-redux'
 import { SnackbarProvider } from 'notistack'
 
 import * as serviceWorkerRegistration from './serviceWorkerRegistration'
-import reportWebVitals from './reportWebVitals'
 import configureStore from './store'
 import App from './App'
 
@@ -20,8 +19,7 @@ ReactDOM.render(
       <App />
     </Provider>
   </SnackbarProvider>,
-  document.getElementById('root')
+  document.getElementById('reactpollapp')
 )
 
-serviceWorkerRegistration.register()
-reportWebVitals()
+serviceWorkerRegistration.unregister()
